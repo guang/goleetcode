@@ -1,4 +1,4 @@
-package main_ao
+package main
 
 import (
 	"testing"
