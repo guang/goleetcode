@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
+
+	"github.com/gy8/goleetcode/tree"
 )
 
 func trackDepth(node *TreeNode, depth int) int {
