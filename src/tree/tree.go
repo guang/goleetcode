@@ -1,4 +1,4 @@
-package main
+package tree
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func deserialize(str string) *TreeNode {
+func Deserialize(str string) *TreeNode {
 	if strings.HasPrefix(str, "[") && strings.HasSuffix(str, "]") {
 		strArr := strings.Split(str[1:len(str)-1], ",")
 
@@ -54,34 +54,34 @@ func deserialize(str string) *TreeNode {
 	return nil
 }
 
-func findDepth(node *TreeNode, depth int) int {
+func FindDepth(node *TreeNode, depth int) int {
 
 	current_depth := depth
 
 	if node.Left != nil {
-		current_depth = int(math.Max(float64(findDepth(node.Left, depth+1)), float64(depth)))
+		current_depth = int(math.Max(float64(FindDepth(node.Left, depth+1)), float64(depth)))
 	}
 
 	if node.Right != nil {
-		current_depth = int(math.Max(float64(findDepth(node.Right, depth+1)), float64(current_depth)))
+		current_depth = int(math.Max(float64(FindDepth(node.Right, depth+1)), float64(current_depth)))
 	}
 
 	return current_depth
 
 }
 
-func getDepth(root *TreeNode) int {
+func GetDepth(root *TreeNode) int {
 
 	if root == nil {
 		return 0
 	}
 
-	return findDepth(root, 1)
+	return FindDepth(root, 1)
 
 }
 
-func calcIndents(root *TreeNode) []int {
-	numLevels := getDepth(root)
+func CalcIndents(root *TreeNode) []int {
+	numLevels := GetDepth(root)
 
 	var (
 		indents []int
@@ -111,7 +111,7 @@ func calcIndents(root *TreeNode) []int {
 	return indents
 }
 
-func initStrSlice(size int, str string) []string {
+func InitStrSlice(size int, str string) []string {
 	strSlice := make([]string, size)
 	for idx, _ := range strSlice {
 		strSlice[idx] = str
@@ -119,10 +119,10 @@ func initStrSlice(size int, str string) []string {
 	return strSlice
 }
 
-func printTree(root *TreeNode) {
+func PrintTree(root *TreeNode) {
 
 	if root != nil {
-		indents := calcIndents(root)
+		indents := CalcIndents(root)
 
 		currLevel := []*TreeNode{root}
 		emptyLevel := false
@@ -135,14 +135,14 @@ func printTree(root *TreeNode) {
 			emptyLevel = true
 
 			if indents[levelNum] != 0 {
-				indentSlice = initStrSlice(indents[levelNum], " ")
+				indentSlice = InitStrSlice(indents[levelNum], " ")
 			}
 
 			levelVal = append(indentSlice, levelVal...)
 			for _, node := range currLevel {
 				if node == nil {
 					if levelNum >= 1 {
-						spaceSlice := initStrSlice(indents[levelNum-1]+1, " ")
+						spaceSlice := InitStrSlice(indents[levelNum-1]+1, " ")
 						levelVal = append(levelVal, "*", strings.Join(spaceSlice, ""))
 					} else {
 						levelVal = append(levelVal, "*")
@@ -150,7 +150,7 @@ func printTree(root *TreeNode) {
 					nextLevel = append(nextLevel, nil, nil)
 				} else {
 					if levelNum >= 1 {
-						spaceSlice := initStrSlice(indents[levelNum-1]+1, " ")
+						spaceSlice := InitStrSlice(indents[levelNum-1]+1, " ")
 						levelVal = append(levelVal, strconv.Itoa(node.Val), strings.Join(spaceSlice, ""))
 					} else {
 						levelVal = append(levelVal, strconv.Itoa(node.Val))

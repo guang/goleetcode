@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/gy8/goleetcode/tree"
+	"tree"
 )
 
-func trackDepth(node *TreeNode, depth int) int {
+func trackDepth(node *tree.TreeNode, depth int) int {
 
 	current_depth := depth
 
@@ -22,7 +22,7 @@ func trackDepth(node *TreeNode, depth int) int {
 	return current_depth
 }
 
-func maxDepth(root *TreeNode) int {
+func maxDepth(root *tree.TreeNode) int {
 
 	if root == nil {
 		return 0
@@ -32,11 +32,11 @@ func maxDepth(root *TreeNode) int {
 }
 
 func main() {
-	c := TreeNode{Val: 14, Left: nil, Right: nil}
-	b := TreeNode{Val: 13, Left: &c, Right: nil}
-	a := TreeNode{Val: 12, Left: nil, Right: nil}
+	c := tree.TreeNode{Val: 14, Left: nil, Right: nil}
+	b := tree.TreeNode{Val: 13, Left: &c, Right: nil}
+	a := tree.TreeNode{Val: 12, Left: nil, Right: nil}
 
-	root := TreeNode{Val: 11, Left: &a, Right: &b}
+	root := tree.TreeNode{Val: 11, Left: &a, Right: &b}
 
 	fmt.Println(maxDepth(&root))
 }
