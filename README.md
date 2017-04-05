@@ -7,6 +7,6 @@ hard problems are 5 pt
 
 | player | week of  | easy | medium | hard | total score |
 |--------|----------|------|--------|------|-------------|
-| guang  | 20170407 |      |        |      |             |
+| guang  | 20170407 |    1 |        |      |           1 |
 | ronak  | 20170407 |      |        |      |             |
 |        |          |      |        |      |             |
